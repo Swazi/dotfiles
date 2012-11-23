@@ -1,0 +1,95 @@
+URxvt*background:        #151515
+URxvt*foreground:        #cccccc
+
+
+URxvt*cursorColor:       #999999
+URxvt*colorBD:           #ffffff
+URxvt*colorUL:           #ffff99
+
+! vosh scheme
+
+
+! Black (not tango) + DarkGrey
+URxvt*color0: #000000
+URxvt*color8: #555753
+! DarkRed + Red
+URxvt*color1: #c64552
+URxvt*color9: #f17060
+! DarkGreen + Green
+URxvt*color2: #8ec553
+URxvt*color10: #b9f469
+! DarkYellow + Yellow
+URxvt*color3: #de9e4e 
+URxvt*color11: #f7b056
+! DarkBlue + Blue
+URxvt*color4: #479ebb
+URxvt*color12: #71dede
+! DarkMangenta + Mangenta
+URxvt*color5: #75314b
+URxvt*color13: #d66590
+!DarkCyan + Cyan (both not tango)
+URxvt*color6: #618485
+URxvt*color14: #7eb2b2
+! LightGrey + White
+URxvt*color7: #C5C5C5
+URxvt*color15: #CFCFCF
+
+!BLK
+!URxvt*color0:           #666666
+!URxvt*color8:           #999999
+!RED
+!URxvt*color1:          #CC6699
+!URxvt*color9:	        #FF99CC
+!GRN
+!URxvt*color2:           #99CC66
+!URxvt*color10:         #CCFF99
+!YEL
+!URxvt*color3:          #CC9966
+!URxvt*color11:         #FFCC99
+!BLU
+!URxvt*color4:          #6699CC
+!URxvt*color12:         #99CCFF
+!MAG
+!URxvt*color5:           #9966CC
+!URxvt*color13:          #CC99FF
+!CYN
+!URxvt*color6:          #66CC99
+!URxvt*color14:         #99FFCC
+!WHT
+!URxvt*color7:          #CCCCCC
+!URxvt*color15:         #FFFFFF
+
+! vim: set filetype=xdefaults :
+!*foreground: #aec1c3
+!*background: #151515
+
+!black
+! *color0:     #AF875F! *color8:     #AF875F
+!*color0:     #b4d1d4
+!*color8:     #404040
+!red
+!*color1:     #E84F4F
+!*color9:     #D23D3D
+!green
+!*color2:     #B8D68C
+!*color10:    #A0CF5D
+!yellow
+!*color3:     #E1AA5D
+!*color11:    #F39D21
+!blue
+!*color4:     #7DC1CF
+!*color12:    #4E9FB1
+!magenta
+!*color5:     #9B64FB
+!*color13:    #8542FF
+!cyan
+!*color6:     #6D878D
+!*color14:    #42717B
+!white
+!*color7:     #dddddd
+!*color15:    #dddddd
+
+URxvt*borderColor:        #151515
+!URxvt*colorBD:            #ffffff
+!URxvt*cursorColor:        #ff8939
+!URxvt*cursorColor2:       #151515
