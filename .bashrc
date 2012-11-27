@@ -123,10 +123,6 @@ alias fhome="find ~/ -type f -name"
 
 alias fcurrent="find . -type f -name"
 
-alias sshneu="ssh swazi@login.neu.edu"
-
-alias sftpneu="sftp swazi@login.neu.edu"
-
 alias compressgzip="tar cvzf"
 
 alias compressbzip="tar cvfj"
