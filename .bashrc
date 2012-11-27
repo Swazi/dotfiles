@@ -113,9 +113,9 @@ alias mpd="killall mpd; mpd ~/.mpd.conf"
 
 alias cl="clear"
 
-alias sshcss="ssh swazi@login.ccs.neu.edu"
+alias sshccs="ssh swazi@login.ccs.neu.edu"
 
-alias sftpcss="sftp swazi@login.ccs.neu.edu"
+alias sftpccs="sftp swazi@login.ccs.neu.edu"
 
 alias ff="find / -type f -name"
 
@@ -123,9 +123,9 @@ alias fhome="find ~/ -type f -name"
 
 alias fcurrent="find . -type f -name"
 
-alias sshneu="ssh swazi@login.ccs.neu.edu"
+alias sshneu="ssh swazi@login.neu.edu"
 
-alias sftpneu="sftp swazi@login.ccs.neu.edu"
+alias sftpneu="sftp swazi@login.neu.edu"
 
 alias compressgzip="tar cvzf"
 
