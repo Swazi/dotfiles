@@ -5,7 +5,11 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+ZSH_THEME="robbyrussell"
+#ZSH_THEME="norm"
+#ZSH_THEME="sorin"
+#ZSH_THEME="agnoster"
+
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -14,11 +18,11 @@ ZSH_THEME="af-magic"
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
-# Comment this out to disable weekly auto-update checks
+# Uncomment this to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
-# Change this value to set how frequently ZSH updates¬
-export UPDATE_ZSH_DAYS=13
+# Uncomment to change how often before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -26,8 +30,21 @@ export UPDATE_ZSH_DAYS=13
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
+# Uncomment following line if you want to disable command autocorrection
+# DISABLE_CORRECTION="true"
+
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
+
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment following line if you want to  shown in the command execution time stamp 
+# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
+# yyyy-mm-dd
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -36,8 +53,23 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+# User configuration
+
+export PATH="/home/swazi/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/swazi/eclipse"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# # Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias mpd="killall mpd; mpd ~/.mpd.conf"
 
@@ -46,6 +78,10 @@ alias cl="clear"
 alias sshccs="ssh swazi@login.ccs.neu.edu"
 
 alias sftpccs="sftp swazi@login.ccs.neu.edu"
+
+alias sshlr="ssh swazi@lastresort.ccs.neu.edu"
+
+alias sshtcp="ssh swazi@cs3600tcp.ccs.neu.edu"
 
 alias ff="find / -type f -name"
 
@@ -68,3 +104,7 @@ alias htop="htop --sort-key=CPU"
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
 
 alias grep='grep --color=auto'
+
+alias lt='ls -ltr'
+
+# alias emacs='emacs --no-window-system'
