@@ -88,7 +88,7 @@ def get_collaborations(actor_films, actor_1, actor_2):
 
 def make_film_actors_dictionary():
   titledict = {}
-  infile = open("V:/BGA/Shared/suaral/Test/mdb.txt", "r")
+  infile = open("mdb.txt", "r")
   masterlist = [nextline.strip() for nextline in infile]
   infile.close()
   j = 0
