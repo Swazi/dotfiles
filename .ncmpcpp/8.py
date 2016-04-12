@@ -94,7 +94,7 @@ def draw_game(picture, game):
 
 		
 def main():
-	game = read_to_2d_array("V:/BGA/Shared/suaral/Test/8/one.txt")
+	game = read_to_2d_array("one.txt")
 
 	print_game(game)
 	start_time = time.time()
