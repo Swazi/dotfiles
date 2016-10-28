@@ -192,6 +192,39 @@ public class Warmup {
 	}
 }
 
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+
+
+public class DiceSimulator {
+
+	
+	static int[] rollCounts = new int[13];
+	static double[] theortical = {0.0, 0.0, 1/36.0, 2/36.0, 3/36.0, 4/36.0, 5/36.0, 6/36.0, 5/35.0, 4/36.0, 3/36.0, 2/36.0, 1/36.0};
+	
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter number of simulated dice rolls: ");
+		int n = input.nextInt();
+		
+		for (int i = 0; i < n; i++) {
+			int total = rollDice();
+			rollCounts[total]++;
+		}
+		
+		for (int i = 2; i < theortical.length; i++) {
+			System.out.println("Die total of " + i + ": Theoretical = " + theortical[i] + " Simulated = " + (1.0 * rollCounts[i])/n );
+		}
+	}
+	
+	private static int rollDice() {
+		return rollDie() + rollDie();
+	}
+	
+	private static int rollDie() {
+		return ThreadLocalRandom.current().nextInt(1, 7);
+	}
+}
 
 
 
