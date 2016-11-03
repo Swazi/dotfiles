@@ -1,0 +1,255 @@
+
+public class DigitSort {
+
+	public static void main(String[] args) {
+		int[] array = { 133, 507, 003, 105};
+		int size = 4;
+		
+		sortByDigit(array, size);
+		displayArray(array, size);
+
+	}
+	
+
+
+	private static void sortByDigit(int[] array, int size) {
+		int length = String.valueOf(array[0]).length();
+		for (int i = 0; i < length; i++) {
+			displayArray(array, size);
+			sortByDigit(array, size, i);
+		}
+		
+	}
+
+	private static void sortByDigit(int[] array, int size, int pass) {
+		int j;
+		boolean swap = true;
+		int temp;
+
+		while (swap) {
+			swap = false;
+			for (j = 0; j < array.length - 1; j++) {
+				if (getSigDigit(array[j], pass) > getSigDigit(array[j + 1], pass)) {
+					temp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = temp;
+					swap = true;
+				}
+			}
+		}
+	}
+	
+	private static int getSigDigit(int number, int index) {
+		return (number / pow(10, index)) % 10;
+	}
+	
+	private static int pow(int base, int power) {
+		if (power == 0)
+			return 1;
+		return base * pow(base, power - 1);
+	}
+
+	private static void displayArray(int[] array, int size) {
+		System.out.print("[");
+		for (int i = 0; i < array.length; i++) {
+			if (i == array.length - 1) {
+				System.out.print(array[i]);
+			} else {
+				System.out.print(array[i] + ", ");
+			}
+			
+		}
+		System.out.print("]");
+		System.out.println();
+	}
+
+}
+
+import java.util.Random;
+
+public class PokerHand {
+
+	private int[] deck;
+
+	public PokerHand(int[] deck) {
+		this.deck = deck;
+	}
+	
+	public int[] drawHand() {
+		int[] hand = new int[5];
+		for (int i = 0; i < hand.length; i++) {
+			hand[i] = deck[i];
+		}
+		return hand;
+	}
+	
+	public void shuffle() {
+		int n = this.deck.length;
+		Random random = new Random();
+		random.nextInt();
+		for (int i = 0; i < n; i++) {
+			int x = i + random.nextInt(n - i);
+			swap(this.deck, i, x);
+		}
+	}
+	
+	public static int[] rankHand(int[] hand) {
+		int[] ranks = new int[15];
+		for (int i = 0; i < hand.length; i++) {
+			int card = hand[i];
+			int rank = (card % 13) + 2;
+			ranks[rank]++;
+		}
+		return ranks;
+	}
+	
+	public static boolean isRoyalFlush(int[] hand) {
+		int[] ranks = rankHand(hand);
+		boolean containsPair = false;
+		boolean containsThreeOfKind = false;
+		for (int i = 0; i < ranks.length; i++) {
+			if (ranks[i] == 2) {
+				containsPair = true;
+			}
+			
+			if (ranks[i] == 3) {
+				containsThreeOfKind = true;
+			}
+		}
+		
+		return containsPair && containsThreeOfKind;
+	}
+
+	private static void swap(int[] a, int i, int x) {
+		int temp = a[i];
+		a[i] = a[x];
+		a[x] = temp;
+	}
+	
+	public static void main(String[] args) {
+		int[] deck = new int[52];
+		for (int i = 0; i < deck.length; i++) {
+			deck[i] = i;
+		}
+		
+		PokerHand poker = new PokerHand(deck);
+		
+		int count = 0;
+		int attempts = 1000000;
+		
+		for (int i = 0; i < attempts; i++) {
+			poker.shuffle();
+			int[] hand = poker.drawHand();
+			if (isRoyalFlush(hand)) {
+				count++;
+			}
+			
+		}
+		
+		System.out.println(count / (attempts * 1.0));		
+	
+	}
+}
+
+import java.util.Scanner;
+
+public class Reverse {
+
+	
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the size of the array: ");
+		
+		int n = input.nextInt();
+		int[] array = new int[n];
+		
+		for (int i = 0; i < array.length; i++) {
+			System.out.println("please enter a number to add to the array: ");
+			array[i] = input.nextInt();
+		}
+		
+		System.out.println("Your array is: ");
+		displayArray(array, n);
+		reverse(array, 0, n-1);
+		System.out.println("Here it is reversed: ");
+		displayArray(array, n);
+		
+	}
+	
+	public static void reverse(int[] a, int lo, int hi) {
+		if (hi == lo) {
+			return;
+		} else if (hi - lo == 1) {
+			swap(a, hi, lo);
+		} else {
+			swap(a, hi, lo);
+			reverse(a, lo + 1, hi - 1);
+		}
+	}
+	
+	private static void swap(int[] a, int i, int x) {
+		int temp = a[i];
+		a[i] = a[x];
+		a[x] = temp;
+	}
+	
+	private static void displayArray(int[] array, int size) {
+		System.out.print("[");
+		for (int i = 0; i < array.length; i++) {
+			if (i == array.length - 1) {
+				System.out.print(array[i]);
+			} else {
+				System.out.print(array[i] + ", ");
+			}
+			
+		}
+		System.out.print("]");
+		System.out.println();
+	}
+	
+}
+
+import java.util.Arrays;
+
+public class Sequence {
+
+	public static void main(String[] args) {
+		int[] array = { 0, 1, 2, 4, 7, 10, 12, 0, 1, 2, 3, 4 };
+
+		System.out.println(Arrays.toString(longestIncreasingSequence(array)));
+	}
+
+	private static int[] longestIncreasingSequence(int[] array) {
+		int maxSize = 0;
+		int seqLowerBound = 0;
+		int curLowerBound = 0;
+
+		for (int i = 1; i < array.length; i++) {
+			if (!(array[i - 1] < array[i])) {
+				int curSeqLen = (i - curLowerBound) - 1;
+				if (curSeqLen > maxSize) {
+					maxSize = curSeqLen;
+					seqLowerBound = curLowerBound;
+					curLowerBound = i;
+				}
+			}
+		}
+
+		int curSeqLen = (array.length - curLowerBound) - 1;
+		if (curSeqLen > maxSize) {
+			maxSize = curSeqLen;
+			seqLowerBound = curLowerBound;
+		}
+
+		int[] sequence = new int[maxSize + 1];
+		for (int i = 0; i <= maxSize; i++) {
+			sequence[i] = array[i + seqLowerBound];
+		}
+
+		return sequence;
+	}
+}
+
+
+
+
