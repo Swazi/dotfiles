@@ -1,67 +1,389 @@
-import java.util.Scanner;
+import java.util.Random;
 
 public class Warmup {
 
-	public int[] deck;
-
-	public void shuffle() {
-		int n = this.deck.length;
-		for (int i = 0; i < this.deck.length; i++) {
-			int random = i + (int) (Math.random() * (n - i));
-			int randomElement = this.deck[random];
-			this.deck[random] = this.deck[i];
-			this.deck[i] = randomElement;
-		}
-	}
-
+	private int[] deck;
+	
 	public void initialize() {
 		this.deck = new int[52];
-
+		
 		for (int i = 0; i < deck.length; i++) {
 			deck[i] = i;
 		}
 	}
-
-	public int[] drawHand() {
-		int[] ranks = new int[15];
-		for (int i = 0; i < 5; i++) {
-			int card = this.deck[i];
-			// System.out.println(card);
-			int rank = (card % 13) + 2;
-			ranks[rank]++;
+	
+	public void printDeck() {
+		for (int i = 0; i < deck.length; i++) {
+			int card = deck[i];
+			System.out.println(i + ": " + rank(card) + " of " + suit(card));
 		}
-		return ranks;
 	}
-
-	public static boolean isFourOfAKind(int[] hand) {
-		for (int i = 0; i < hand.length; i++) {
-			if (hand[i] == 4)
-				return true;
+	
+	public void shuffleDeck() {
+		 int n = this.deck.length;
+         Random random = new Random();
+         random.nextInt();
+         for (int i = 0; i < n; i++) {
+                 int x = i + random.nextInt(n - i);
+                 swap(this.deck, i, x);
+         }
+	}
+	
+	  private static void swap(int[] arrau, int i, int x) {
+          int temp = arrau[i];
+          arrau[i] = arrau[x];
+          arrau[x] = temp;
+  }
+	
+	
+	private String suit(int card) {
+		int suit = card / 13;
+		if (suit == 0) {
+			return "Hearts";
+		} else if (suit == 1) {
+			return "Diamonds";
+		} else if (suit == 2) {
+			return "Clubs";
+		} else {
+			return "Spades";
 		}
-
-		return false;
 	}
-
+	
+	private String rank(int card) {
+		int rank = (card % 13) + 2;
+		switch (rank) {
+		case 2:
+			return "Two";
+		case 3:
+			return "Three";
+		case 4:
+			return "Four";
+		case 5:
+			return "Five";
+		case 6:
+			return "Six";
+		case 7:
+			return "Seven";
+		case 8:
+			return "Eight";
+		case 9:
+			return "Nine";
+		case 10:
+			return "Ten";
+		case 11:
+			return "Jack";
+		case 12:
+			return "Queen";
+		case 13:
+			return "King";
+		case 14:
+			return "Ace";
+		default:
+			return null;
+		}
+	}
+	
 	public static void main(String[] args) {
 		Warmup poker = new Warmup();
 		poker.initialize();
-
-		Scanner input = new Scanner(System.in);
-		
-		while (true) {
-			System.out.print("Run (0=no, 1=yes): ");
-			if (input.nextInt() != 1) {
-				break;
-			}
-			poker.shuffle();
-			int[] hand = poker.drawHand();
-			if (isFourOfAKind(hand)) {
-				System.out.println("You got four of a kind!");
-			} else {
-				System.out.println("Sorry you didn't get four of a kind");
-			}
-		}
-		
-		System.out.println("Quitting...");
+		poker.printDeck();
+		poker.shuffleDeck();
+		poker.printDeck();
 	}
 }
+
+public class Shuffle2 {
+
+	public static int[] unshuffledDeck() {
+		int[] deck = new int[52];
+
+		for (int i = 0; i < deck.length; i++) {
+			deck[i] = i + 1;
+		}
+
+		return deck;
+	}
+
+	public static int[] shuffleDeck(int[] deck) {
+		int[] pile1 = new int[26];
+		int[] pile2 = new int[26];
+
+		for (int i = 0; i < deck.length; i++) {
+			if (i < 26) {
+				pile1[i] = deck[i];
+			} else {
+				pile2[i % 26] = deck[i];
+			}
+		}
+
+		int[] shuffledDeck = new int[52];
+
+		for (int i = 0; i < shuffledDeck.length; i++) {
+			if (i % 2 == 0) {
+				shuffledDeck[i] = pile2[i / 2];
+			} else {
+				shuffledDeck[i] = pile1[i / 2];
+			}
+		}
+
+		return shuffledDeck;
+
+	}
+
+	public static boolean arrayEquals(int[] a1, int[] a2) {
+		if (a1.length != a2.length)
+			return false;
+
+		for (int i = 0; i < a2.length; i++) {
+			if (a1[i] != a2[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	public static void main(String[] args) {
+		int[] deck = unshuffledDeck();
+		int[] shuffledDeck = shuffleDeck(deck);
+
+		int count = 0;
+
+		while (!arrayEquals(deck, shuffledDeck)) {
+			shuffledDeck = shuffleDeck(shuffledDeck);
+			count++;
+		}
+
+		System.out.println(count);
+	}
+}
+
+public class Shuffle1 {
+
+	public static int[] unshuffledDeck() {
+		int[] deck = new int[52];
+
+		for (int i = 0; i < deck.length; i++) {
+			deck[i] = i + 1;
+		}
+
+		return deck;
+	}
+
+	public static int[] shuffleDeck(int[] deck) {
+		int[] pile1 = new int[26];
+		int[] pile2 = new int[26];
+
+		for (int i = 0; i < deck.length; i++) {
+			if (i < 26) {
+				pile1[i] = deck[i];
+			} else {
+				pile2[i % 26] = deck[i];
+			}
+		}
+
+		int[] shuffledDeck = new int[52];
+
+		for (int i = 0; i < shuffledDeck.length; i++) {
+			if (i % 2 == 0) {
+				shuffledDeck[i] = pile1[i / 2];
+			} else {
+				shuffledDeck[i] = pile2[i / 2];
+			}
+		}
+
+		return shuffledDeck;
+
+	}
+
+	public static boolean arrayEquals(int[] a1, int[] a2) {
+		if (a1.length != a2.length)
+			return false;
+
+		for (int i = 0; i < a2.length; i++) {
+			if (a1[i] != a2[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	public static void main(String[] args) {
+		int[] deck = unshuffledDeck();
+		int[] shuffledDeck = shuffleDeck(deck);
+
+		int count = 0;
+
+		while (!arrayEquals(deck, shuffledDeck)) {
+			shuffledDeck = shuffleDeck(shuffledDeck);
+			count++;
+		}
+
+		System.out.println(count);
+	}
+}
+
+import java.util.Arrays;
+
+public class RecursiveInsertionSort {
+
+	public static int insertionSort(int[] array, int max) {
+		if (max <= 1) {
+			return max;
+		}
+
+		max = insertionSort(array, max - 1); // recursive call
+
+		int key = array[max];
+
+		int i = max - 1;
+
+		while ((i >= 0) && (array[i] > key)) {
+			array[i + 1] = array[i];
+			i--;
+		}
+		array[i + 1] = key;
+		return max + 1;
+	}
+
+	public static void main(String[] args) {
+		int[] array = {5, 2, 3, 8, 1, 4, 6};
+		insertionSort(array, array.length);
+		System.out.println(Arrays.toString(array));
+	}
+}
+
+import java.util.Scanner;
+
+public class MovingDay {
+
+	private static final int T = 1;
+	private static final int F = 0;
+	private static final int BLANK = 2;
+
+	public static void main(String[] args) {
+		movingDay(3,3);
+	}
+
+	public static void movingDay(int trues, int falses) {
+		int[] game = generateGameArray(trues, falses);
+		Scanner input = new Scanner(System.in);
+		while (!win(game)) {
+			System.out.println("Choose Move:");
+			int move = input.nextInt();
+			move(game, move);
+			printGame(game);
+			
+		}
+		
+	}
+
+	public static void move(int[] game, int move) {
+		if (move == T) {
+			if (game[move + 1] == T) {
+				System.out.println("Cannot jump True over a True");
+				return;
+			}
+
+			if (game[move + 1] == BLANK) {
+				swap(game, move, move + 1);
+				return;
+			}
+
+			if (game[move + 2] != BLANK) {
+				System.out.println("Cannot jump True (no empty space)");
+				return;
+			}
+
+			swap(game, move, move + 2);
+
+		} else if (move == F) {
+
+			if (game[move - 1] == BLANK) {
+				swap(game, move, move - 1);
+				return;
+			}
+
+			if (game[move - 2] != BLANK) {
+				System.out.println("Cannot jump True (no empty space)");
+				return;
+			}
+
+			swap(game, move, move - 2);
+		}
+	}
+
+	private static boolean win(int[] game) {
+		int index = 0;
+		while (index < game.length && game[index] == F) {
+			index++;
+		}
+
+		if (game[index] != BLANK) {
+			return false;
+		}
+
+		index++;
+
+		while (index < game.length) {
+			if (game[index] != T) {
+				return false;
+			}
+			index++;
+		}
+
+		return true;
+
+	}
+
+	private static void swap(int[] game, int x, int y) {
+		int temp = game[x];
+		game[x] = game[y];
+		game[y] = temp;
+	}
+
+	public static void printGame(int[] game) {
+		for (int i = 0; i < game.length; i++) {
+			System.out.print("  " + i + " ");
+		}
+		System.out.println();
+		System.out.print("|");
+		for (int i = 0; i < game.length; i++) {
+			System.out.print(" ");
+			if (game[i] == 1) {
+				System.out.print("T");
+			} else if (game[i] == 0) {
+				System.out.print("F");
+			} else {
+				System.out.print(" ");
+			}
+			System.out.print(" |");
+		}
+		System.out.println();
+	}
+
+	public static int[] generateGameArray(int trues, int falses) {
+		int[] game = new int[trues + falses + 1];
+
+		int i = 0;
+		while (i < trues) {
+			game[i] = 1;
+			i++;
+		}
+
+		game[i] = 2;
+		i++;
+
+		while (i < trues + falses) {
+			game[i] = 0;
+			i++;
+		}
+
+		return game;
+
+	}
+
+}
+
+
