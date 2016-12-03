@@ -297,3 +297,66 @@ public class StringPermuter
   }
 }
 
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Trigonometry {
+	private static Render render = new Render();
+
+	public static void main(String[] args) throws InterruptedException {
+
+		// circle(100);
+		// rectangle(100, 50);
+		curve();
+		// orbit();
+	}
+
+	private static void circle(int radius) throws InterruptedException {
+		Circle c = new Circle(200, 200, radius);
+		render.addCircle(c);
+		for (int i = 0; i < 10; i++) {
+
+			render.redraw();
+			int negOrPos = 1;
+			if (1 == ThreadLocalRandom.current().nextInt(2)) {
+				negOrPos = -1;
+			}
+			;
+			c.setRadius(c.getRadius() + (negOrPos * 20));
+			Thread.sleep(1000 * 10);
+
+		}
+	}
+
+	private static void rectangle(int width, int height) {
+		for (int x = 20; x <= (width + 20); x++) {
+			for (int y = 20; y <= (height + 20); y++) {
+				render.addCircle(new Circle(x, y, 1));
+			}
+		}
+		render.draw();
+	}
+
+	private static void curve() {
+		int maxX = 360;
+		for (int x = 0; x < maxX; x++) {
+			int y = (int) (150 - Math.sin(Math.toRadians(x)) * 100);
+			render.addCircle(new Circle(x, y, 2));
+		}
+		render.draw();
+	}
+
+	private static void orbit() {
+		Circle planet = new Circle(200, 200, 50);
+		Circle moon = new Circle(0, 0, 5);
+		render.addCircle(planet);
+		render.addCircle(moon);
+
+		for (double t = 0; t < 2 * Math.PI; t += 0.01) {
+			render.redraw();
+			moon.setX((int) (planet.getRadius() * Math.cos(t) + (planet.x)));
+			moon.setY((int) (planet.getRadius() * Math.sin(t) + (planet.y)));
+		}
+
+	}
+
+}
