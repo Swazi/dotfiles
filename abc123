@@ -1,0 +1,179 @@
+
+public class Door {
+	private String inscription;
+	private boolean locked;
+	private boolean closed;
+	
+	public Door(String inscription) {
+		this.inscription = inscription;
+		this.locked = true;
+		this.closed = true;
+	}
+	
+	public boolean isClosed() {
+		return closed;
+	}
+	
+	public boolean isLocked() {
+		return locked;
+	}
+	
+	public void open() {
+		if (closed && !locked) {
+			closed = false;
+		} else {
+			System.out.println("Door must be unlocked and closed before it can be opened.");
+		}
+	}
+	
+	public void close() {
+		if (!closed) {
+			closed = true;
+		} else {
+			System.out.println("Door must be open before you can close it.");
+		}
+	}
+	
+	public void lock() {
+		if (!locked) {
+			locked = true;
+		} else {
+			System.out.println("The door is already locked.");
+		}
+	}
+	
+	public void unlock() {
+		if (locked) {
+			locked = false;
+		} else {
+			System.out.println("The door is already unlocked.");
+		}
+	}
+	
+	public String getInscription() {
+		return this.inscription;
+	}
+}
+
+public class TestDoor {
+	public static void main(String[] args) {
+		Door enter = new Door("Enter");
+		Door exit = new Door("Exit");
+		Door treasure = new Door("Treasure");
+
+		enter.unlock();
+		enter.open();
+
+		System.out.println("Is the enterance door open? " + !enter.isClosed()
+				+ ". Is the enterance door unlocked? " + !enter.isLocked());
+
+		exit.close();
+		exit.lock();
+
+		System.out.println("Is the exit door closed? " + exit.isClosed()
+				+ ". Is the exit door locked? " + exit.isLocked());
+
+		treasure.unlock();
+		treasure.open();
+		treasure.lock();
+
+		System.out.println("Is the treasure door open? " + !treasure.isClosed()
+				+ ". Is the exit treasure door  locked? " + exit.isLocked());
+
+	}
+}
+import java.util.concurrent.ThreadLocalRandom;
+
+public class SuperDie {
+
+	private int sides;
+	private int rollCount;
+	
+	public SuperDie() {
+		this.sides = 6;
+		this.rollCount = 0;
+	}
+	
+	public SuperDie(int sides) {
+		this.sides = sides;
+		this.rollCount = 0;
+	}
+	
+	public void setSides(int sides) {
+		this.sides = sides;
+	}
+	
+	public int getSides() {
+		return this.sides;
+	}
+	
+	public int getRollCount() {
+		return rollCount;
+	}
+	
+	public int roll() {
+		this.rollCount++;
+		return ThreadLocalRandom.current().nextInt(1, this.sides+1);
+	}
+	
+}
+
+
+public class SuperDieExample {
+
+	
+	public static void main(String[] args) {
+		SuperDie die = new SuperDie();
+		System.out.println(die.roll());
+		System.out.println(die.roll());
+		System.out.println(2 == die.getRollCount());
+		die.setSides(500);
+		System.out.println(die.roll());
+		System.out.println(3 == die.getRollCount());
+		System.out.println(500 == die.getSides());
+	}
+	
+}
+
+public class Counter {
+
+	private int count;
+	
+	public Counter() {
+		this.count = 0;
+	}
+	
+	public Counter(int count) {
+		this.count = count;
+	}
+	
+	public int getCount() {
+		return this.count;
+	}
+	
+	public void resetCount() {
+		this.count = 0;
+	}
+	
+	public void incrementCount() {
+		this.count++;
+	}
+}
+
+import java.util.Scanner;
+
+public class CounterExample {
+	
+	public static void main(String[] args) {
+		Counter counter = new Counter();
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter a sequence of integers ending with 0.");
+		while (input.nextInt() != 0) {
+			counter.incrementCount();
+		}
+		System.out.println("There were " + counter.getCount() + " non-zero integers in the sequence.");
+		input.close();
+	}
+}
+
+
